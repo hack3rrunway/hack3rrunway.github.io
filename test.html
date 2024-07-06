@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric Yardage Calculator</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.8.10/brython.min.js"></script>
+</head>
+<body onload="brython()">
+    <h1>Fabric Yardage Calculator</h1>
+    <form>
+        <label for="fabricWidth">Fabric Width (inches):</label>
+        <select id="fabricWidth">
+            <option value="45">45</option>
+            <option value="60">60</option>
+        </select><br><br>
+        <label for="waistbandThickness">Waistband Thickness (inches):</label>
+        <input type="number" id="waistbandThickness"><br><br>
+        <label for="waistCircumference">Waist Circumference (inches):</label>
+        <input type="number" id="waistCircumference"><br><br>
+        <label for="frontLength">Front Length (inches):</label>
+        <input type="number" id="frontLength"><br><br>
+        <label for="backLength">Back Length (inches):</label>
+        <input type="number" id="backLength"><br><br>
+        <button type="button" onclick="calculateYardage()">Calculate Yardage</button>
+    </form>
+    <h2>Results</h2>
+    <p id="results"></p>
+
+    <script type="text/python">
+        from math import pi, sqrt
+
+        def calculateYardage():
+            fabric_width = int(document.getElementById("fabricWidth").value)
+            waistband_thickness = float(document.getElementById("waistbandThickness").value)
+            waist_circumference = float(document.getElementById("waistCircumference").value)
+            front_length = float(document.getElementById("frontLength").value)
+            back_length = float(document.getElementById("backLength").value)
+
+            # Calculate waist radius
+            waist_radius = waist_circumference / (2 * pi)
+
+            # Calculate overall radius of the larger circle
+            overall_radius = waist_radius + max(front_length, back_length) + waistband_thickness
+
+            # Calculate total length of the pattern
+            total_length = 2 * overall_radius
+
+            # Determine the required yardage
+            yardage = total_length / fabric_width
+
+            # Convert yardage to yards (1 yard = 36 inches)
+            yardage_in_yards = yardage / 36
+
+            # Display the results
+            results = document.getElementById("results")
+            results.textContent = f"Required fabric: {yardage_in_yards:.2f} yards"
+
+        def setup():
+            document.getElementById("calculate").bind("click", calculateYardage)
+        
+        setup()
+    </script>
+</body>
+</html>
