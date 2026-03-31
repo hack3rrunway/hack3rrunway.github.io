@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hack3r Runway | A DEFCON 34 Contest</title>
+    
+    <!-- Google Fonts: Fira Code for that authentic terminal feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: '#0a0a0a',
+                        neon: {
+                            green: '#39FF14',
+                            cyan: '#00FFFF'
+                        },
+                        dark: {
+                            100: '#1a1a1a',
+                            200: '#111111'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Hacker / Cyberpunk CSS Effects -->
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Fira Code', monospace;
+            overflow-x: hidden;
+        }
+
+        /* Scanline Overlay Effect */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.25) 50%,
+                rgba(0,0,0,0.25)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Subtle Background Grid Effect */
+        .cyber-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image:
+                linear-gradient(rgba(57, 255, 20, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.07) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Neon Glow Utilities */
+        .text-glow {
+            text-shadow: 0 0 10px #39FF14, 0 0 20px #0a0a0a;
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 10px #00FFFF, 0 0 20px #0a0a0a;
+        }
+        .box-glow {
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+        }
+        .box-glow:hover {
+            box-shadow: 0 0 25px rgba(57, 255, 20, 0.8);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #39FF14; 
+        }
+    </style>
+</head>
+<body class="antialiased relative selection:bg-neon-green selection:text-black">
+
+    <!-- Ambient Visual Effects -->
+    <div class="cyber-grid"></div>
+    <div class="scanlines"></div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 w-full z-50 bg-cyber/90 backdrop-blur-sm border-b border-neon-green/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo area -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-neon-green font-bold text-xl text-glow tracking-widest">
+                        >_RUNWAY
+                    </a>
+                </div>
+                <!-- Links -->
+                <div class="hidden md:block">
+                    <ul class="flex items-baseline space-x-8">
+                        <li>
+                            <a href="index.html" class="text-gray-300 hover:text-neon-green transition-colors duration-200">Home</a>
+                            <a href="#faq" class="ml-4 text-gray-300 hover:text-neon-green transition-colors duration-200">FAQ</a>
+                        </li>
+                        
+                        <!-- Dropdown Menu -->
+                        <li class="relative group py-4">
+                            <button class="text-gray-300 hover:text-neon-green flex items-center transition-colors duration-200">
+                                Archives <span class="ml-1 text-xs">▼</span>
+                            </button>
+                            <!-- Dropdown items -->
+                            <ul class="absolute left-0 mt-4 w-40 rounded-sm bg-dark-200 border border-neon-green/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                                <li><a href="https://hack3rrunway.github.io/DC28contest/" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 27: Year 1</a></li>
+                                <li><a href="https://hack3rrunway.github.io/DC28Virtual/" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 28: Year 2</a></li>
+                                <li><a href="https://hack3rrunway.github.io/DC29Virtual/" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 29: Year 3</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon30.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 30: Year 4</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon31.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 31: Year 5</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon32.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 32: Year 6</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon33.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 33: Year 7</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-12 pb-8 px-4 sm:px-6 lg:px-8 text-center z-10">
+        <!-- Banner image (1600x400) -->
+        <div class="mx-auto mb-8" style="max-width:1600px;">
+            <img src="media/banner-hr.png" alt="Hack3r Runway banner" width="1600" height="400" style="width:100%;height:auto;display:block;margin:0 auto;" />
+        </div>
+    </header>
+
+    <!-- Main: FAQ -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 z-10 relative">
+        <section id="faq" class="max-w-4xl mx-auto mb-12">
+            <h3 class="text-3xl text-neon-cyan mb-6 border-b border-neon-cyan/30 inline-block pb-2">Frequently Asked Questions</h3>
+
+            <p class="text-gray-300 mb-6">Answers to common questions about entering and attending the Hack3r Runway contest.</p>
+
+            <div class="space-y-4">
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">How do I enter the contest?</summary>
+                    <div class="mt-3 text-gray-300">Submit your entry using the registration form linked on the site. Prepare photos and a short description; bring your physical entry to DEF CON for the live showcase if selected.</div>
+                </details>
+
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">What are the eligibility rules?</summary>
+                    <div class="mt-3 text-gray-300">Entries must be handmade or custom-modified wearables. Store-bought-only items are not eligible. See the full rules on the submission form for details about materials and safety. We certainly welcome storebought items that have been significantly modified/hacked. Entries must be safe for public display and wear. No hazardous materials, weapons, or items that violate DEF CON's code of conduct. If in doubt, contact us before creating your entry.</div>
+                </details>
+
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">What categories are available?</summary>
+                    <div class="mt-3 text-gray-300">We accept Digital Wearable, Smart Wear, Aesthetics, and Functional Wear. Choose the category that best fits your entry when submitting. There will also be a People's Choice Award that is voted on by attendees.</div>
+                </details>
+
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">When is the sign-up window?</summary>
+                    <div class="mt-3 text-gray-300">Sign-up opens June 28, 2026 at 5PM PDT and closes August 8, 2026 at 12PM PDT. Times shown on the form are are subject to change if Defcon schedule is updated.</div>
+                </details>
+
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">Do I need to be at DEF CON to participate?</summary>
+                    <div class="mt-3 text-gray-300"> Yes. All entries are expected to walk the runway or find a volunteer to showcase their creations. We are considering doing some online mini contests, but that will be for US participants only.</div>
+                </details>
+
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">How are entries judged?</summary>
+                    <div class="mt-3 text-gray-300">Judging criteria include, but are not limited to, creativity, uniqueness, craftsmanship, functionality, and alignment with category. Judges are selected volunteers from the community; decisions are final.</div>
+                </details>
+
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">What are the submission requirements?</summary>
+                    <div class="mt-3 text-gray-300">Pictures and/or videos showing your work progress and a description, category selection, social media handles, and contact info.</div>
+                </details>
+
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">Who do I contact for questions?</summary>
+                    <div class="mt-3 text-gray-300">Use the contact email on the registration form or DM @Hack3rRunway on Bluesky. For urgent on-site issues not related to the contest, event staff are the primary contact.</div>
+                </details>
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">Can I submit more than one entry?</summary>
+                    <div class="mt-3 text-gray-300">Yes, you can submit multiple entries. Each entry must be submitted separately with its own description and category selection.</div>
+                </details>
+                <details class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">Can I make something on site?</summary>
+                    <div class="mt-3 text-gray-300">Yes. Past entries have brought along their materials and worked on site. There is also the Maker Village if you need workspace. Finally, this year, <a href="https://www.dianainitiative.org/events/tdi-def-con/hacker-runway" class="text-neon-cyan hover:underline" target="_blank">The Diana Initiative</a> is offering a space for participants to create and collaborate on Friday morning at Defcon. </div>
+                </details>
+                <details  class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">Can I volunteer to help with the contest?</summary>
+                    <div class="mt-3 text-gray-300">Yes! We are always looking for volunteers to help with various aspects of the contest, including judging, event setup, and social media coverage. If you're interested in volunteering, please reach out via the contact email on the registration form or DM @Hack3rRunway on Bluesky. Remember it is strictly a volunteer position.</div>
+                </details>
+                <details  class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">Will there be prizes?</summary>
+                    <div class="mt-3 text-gray-300">Yes! We will have prizes for the top entries in each category, as well as a People's Choice Award. Prizes may include swag, gift cards, and other hacker-themed goodies. Stay tuned for more details on the prizes as we get closer to the event!</div >
+                </details>
+                <details  class="bg-dark-200/80 border border-neon-green/30 p-4 rounded-sm">
+                    <summary class="cursor-pointer font-mono text-neon-green">How can I sponsor the contest?</summary>
+                    <div class="mt-3 text-gray-300">We welcome prizes sponsors who share our vision for promoting creativity and innovation in the hacker community. Sponsors will have to follow the Defcon guidelines for how to display their branding. Currently, the contest is sponsored by <a href="https://hack3rrunway.square.site" class="text-neon-cyan hover:underline" target="_blank">Hack3r Runway Shop</a>.</div>
+                </details>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-neon-green/30 bg-dark-100/90 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0">
+                <span class="text-neon-green font-bold text-lg">>_THE_HACK3R_RUNWAY</span>
+                <p class="text-xs text-gray-500 mt-1">EOF. Secure connection terminated.</p>
+            </div>
+            
+            <div class="flex space-x-6 text-sm">
+                <a href="https://bsky.app/profile/hack3rrunway.bsky.social" class="text-gray-400 hover:text-neon-cyan transition-colors">Bluesky</a>
+                <a href="https://www.instagram.com/hack3rrunway" class="text-gray-400 hover:text-neon-cyan transition-colors">Instagram</a>
+                <a href="https://www.youtube.com/@Hack3rRunway" class="text-gray-400 hover:text-neon-cyan transition-colors">YouTube</a>
+                <a href="https://www.facebook.com/hack3rrunway" class="text-gray-400 hover:text-neon-cyan transition-colors">Facebook</a>
+                <a href="https://defcon.social/@hac3krrunway" class="text-gray-400 hover:text-neon-cyan transition-colors">Defcon Social</a>
+                <a href="https://hack3rrunway.square.site" class="text-gray-400 hover:text-neon-cyan transition-colors">Hack3r Runway Shop</a>
+                <a href="https://defcon.org" target="_blank" class="text-neon-green hover:underline">DEF CON Info</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

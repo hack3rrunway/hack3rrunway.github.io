@@ -1,98 +1,335 @@
-  
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-<p>&nbsp;</p>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172006970-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hack3r Runway | A DEFCON 34 Contest</title>
+    
+    <!-- Google Fonts: Fira Code for that authentic terminal feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: '#0a0a0a',
+                        neon: {
+                            green: '#39FF14',
+                            cyan: '#00FFFF',
+                            pink: '#FF6EC7',
+                            blue: '#1E90FF',
+                            purple: '#9D00FF',
+                            yellow: '#FFFF00'
+                        },
+                        dark: {
+                            100: '#1a1a1a',
+                            200: '#111111'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
 
-  gtag('config', 'UA-172006970-1');
-</script>
+    <!-- Custom Hacker / Cyberpunk CSS Effects -->
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Fira Code', monospace;
+            overflow-x: hidden;
+        }
 
-<meta name="description" content="Defcon32 contests">
-<meta name="keywords" content="defcon, defcon32, defconsafemode, safemode, hack3r, runway, hacker, hack3rrunway fashion, contest">
-<meta name="author" content="Jai s0cabl3ng">  
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  background: #555;
-}
+        /* Scanline Overlay Effect */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.25) 50%,
+                rgba(0,0,0,0.25)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+        }
 
-.content {
-  max-width: 700px;
-  margin: auto;
-  background: white;
-  padding: 10px;
-}
-</style>
+        /* Subtle Background Grid Effect */
+        .cyber-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image:
+                linear-gradient(rgba(57, 255, 20, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.07) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Neon Glow Utilities */
+        .text-glow {
+            text-shadow: 0 0 10px #39FF14, 0 0 20px #0a0a0a;
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 10px #00FFFF, 0 0 20px #0a0a0a;
+        }
+        .box-glow {
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+        }
+        .box-glow:hover {
+            box-shadow: 0 0 25px rgba(57, 255, 20, 0.8);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #39FF14; 
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased relative selection:bg-neon-green selection:text-black">
 
-<div class="content">
-<p style="text-align: center;"><a title="H@ck3r Runway Home" href="https://hack3rrunway.github.io/"><span style="font-weight: 400;"><img src="hackerrunwaybar.png" alt="h@ck3r runw@y contest logo" width="504" height="200" /></span></a></p>
-<h2 style="text-align: center;"><span style="font-weight: 400;"><strong>Welcome to the 2025 H@ck3r Runway landing page.</strong></span></h2>
-<b>Seven Years Strong! Hack3r Runw@y Returns to Defcon 33!</b>
-<p>
+    <!-- Ambient Visual Effects -->
+    <div class="cyber-grid"></div>
+    <div class="scanlines"></div>
 
-Remember the awesome vibes of Defcon 31? We sure do! And now, after christening the LVC for Defcon 32, Hack3r Runw@y is back for its seventh incredible year at Defcon 33!
-<p>
-Get ready to unleash your inner chic geek and redefine fashion through the eyes of hackers and pentesters. Whether you're into cutting-edge smartwear, dazzling LED integrations, clever obfuscation, captivating cosplay, or simply rocking everyday wear with fabrics and textures that resonate with our community, the runway is yours!
-<p>
-We're looking for your creative takes on clothing, shoes, jewelry, hats, and accessories. If it can be worn, it's ready to strut!
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 w-full z-50 bg-cyber/90 backdrop-blur-sm border-b border-neon-green/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo area -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-neon-green font-bold text-xl text-glow tracking-widest">
+                        >_RUNWAY
+                    </a>
+                </div>
+                <!-- Links -->
+                <div class="hidden md:block">
+                    <ul class="flex items-baseline space-x-8">
+                        <li>
+                            <a href="index" class="text-gray-300 hover:text-neon-green transition-colors duration-200">Home</a>
+                            <a href="#faq" class="ml-4 text-gray-300 hover:text-neon-green transition-colors duration-200">FAQ</a>
+                        </li>
+                        
+                        <!-- Dropdown Menu -->
+                        <li class="relative group py-4">
+                            <button class="text-gray-300 hover:text-neon-green flex items-center transition-colors duration-200">
+                                Archives <span class="ml-1 text-xs">▼</span>
+                            </button>
+                            <!-- Dropdown items -->
+                            <ul class="absolute left-0 mt-4 w-40 rounded-sm bg-dark-200 border border-neon-green/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                                <li><a href="https://hack3rrunway.github.io/DC28contest/" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 27: Year 1</a></li>
+                                <li><a href="https://hack3rrunway.github.io/DC28Virtual/" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 28: Year 2</a></li>
+                                <li><a href="https://hack3rrunway.github.io/DC29Virtual/" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 29: Year 3</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon30.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 30: Year 4</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon31.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 31: Year 5</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon32.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 32: Year 6</a></li>
+                                <li><a href="https://hack3rrunway.github.io/defcon33.html" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neon-green hover:text-black">Defcon 33: Year 7</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-For your convenience, you can bring designs you've crafted before the con. Just remember, your unique creations are what we're celebrating – no store-bought entries, please!
-<p>
-Hack3r Runway is the perfect platform for everyone, whether you're a tech wizard or a crafting enthusiast. Come show off your style and be part of the fun!
-<p>
-Curious to see what it's all about? Check out the video to get a glimpse of the Hack3r Runw@y experience! We can't wait to see your amazing entries at Defcon 33!</p>
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/b6B3Ylo28as" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
-<h4>SIGNUP START: June 17, 2025 <a href="https://forms.gle/gaBFkgeeERSqbXfJ6"><strong>ENTER HERE</strong></a></h4> 
-<h4>SIGNUP DEADLINE: August 9, 2025, 12PM PST</h4>
-<h3 style="background-color:#ffff0f; border: solid tomato;">RUNWAY STAGE at TBD on STAGE in the CONTEST AREA (More info to come)</h3>
-<!--<img src="https://defcon.org/images/defcon-30/maps/forum.webp" alt="forum map showing where the contest is located" width="504" height="200" />-->
-<p><span style="font-weight: 400;">Awards will be handed out in <strong>4 categories</strong> selected by esteemed judges and voters will select a final <strong>People's Choice winner</strong>: </span></p>
-<ul>
-<li><b>Digital wearable</b> - LED, electronic, passive</li>
-<li><b>Smart wear</b> - interactive, temperature sensing, mood changing, card skimmers, etc</li>
-<li><b>Aesthetics and More (non-electronic)</b> - 3d printed, geeky wear, passive design, obfuscation, cosplay</li>
-<li><b>Functional wear</b> - did you bling out your mask and/or shield, have a hazmat suit, lock pick earrings, cufflinks shims</li>
-</ul>
-<p><span style="font-weight: 400;">Winners will be selected based on, but not limited to:</span></p>
-<ul>
-<li>Uniqueness</li>
-<li>Trendy</li>
-<li>Practical</li>
-<li>Couture</li>
-<li>Creativity</li>
-<li>Relevance</li>
-<li>Originality</li>
-<li>Presentation</li>
-<li>Mastery</li>
-</ul>
-<p><a href="https://forms.gle/gaBFkgeeERSqbXfJ6"><strong>ENTER HERE</strong></a></p>
-<p><span style="font-weight: 400;">Stay up to date with changes by following @hack3runway on 
-<a href="https://defcon.social/@Hac3krrunway" target="_blank" rel="noopener">Defcon.Social</a>, 
-<a href="https://www.instagram.com/hack3rrunway" target="_blank" rel="noopener">Intagram</a>, 
-<a href="https://www.tiktok.com/@hack3rrunway" target="_blank" rel="noopener">TikTok</a> or 
-<a href="https://bsky.app/profile/hack3rrunway.bsky.social" target="_blank" rel="noopener">Bluesky</a>. Don't have an entry? You can still participate. <b>Come to the CONTEST AREA At TBD PST to cheer on and vote for your favorite.</b></span></p>
-<p><span style="font-weight: 400;">Your images and/or video will be used in a public presentation for the follow on Defcon Conference. Thank you for helping to make this a success. </span></p>
-<p style="text-align: center;"><span style="font-weight: 400;"><a title="Defcon 32 Submissions" href="https://hack3rrunway.github.io/defcon32.html">Check our Defcon 32 submissions</a></span></p>
-<p style="text-align: center;"><span style="font-weight: 400;"><a title="Defcon 31 Submissions" href="https://hack3rrunway.github.io/defcon31.html">Check our Defcon 31 submissions</a></span></p>
-<p style="text-align: center;"><span style="font-weight: 400;"><a title="Defcon 30 Submissions" href="https://hack3rrunway.github.io/defcon30.html">Check our Defcon 30 submissions</a></span></p>
-<p style="text-align: center;"><span style="font-weight: 400;"><a title="Defcon 29 Submissions" href="https://hack3rrunway.github.io/DC29Virtual/">Check our Defcon 29 submissions</a></span></p>
-<p style="text-align: center;"><span style="font-weight: 400;"><a title="Defcon 28 Submissions" href="https://hack3rrunway.github.io/DC28Virtual/">Check our Defcon 28 submissions</a></span></p>
-<p style="text-align: center;"><span style="font-weight: 400;"><a title="Defcon 27 Submissions" href="https://hack3rrunway.github.io/DC28contest/">Check our Defcon 27 submissions</a></span></p>
-<p style="text-align: center;">&nbsp;</p>
-<p style="text-align: center;"><span style="font-weight: 400;">Follow @hack3rrunway on <a href="https://defcon.social/@Hac3krrunway" target="_blank" rel="noopener">Defcon.Social</a>, 
-<a href="https://www.instagram.com/hack3rrunway" target="_blank" rel="noopener">Intagram</a>, 
-<a href="https://www.tiktok.com/@hack3rrunway" target="_blank" rel="noopener">TikTok</a> and 
-<a href="https://bsky.app/profile/hack3rrunway.bsky.social" target="_blank" rel="noopener">Bluesky</a> </span></p>
-</div>
-<footer style="text-align: center;">
-<p><span style="font-weight: 400;">&copy;2022 Hack3r Runway<br /></span></p>
-</footer>
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 text-center z-10">
+        <!-- Banner image (1600x400) -->
+        <div class="mx-auto mb-8" style="max-width:1600px;">
+            <img src="media/banner-hr.png" alt="Hack3r Runway banner" width="1600" height="400" style="width:100%;height:auto;display:block;margin:0 auto;" />
+        </div>
+        <h2 class="text-xl sm:text-2xl text-neon-cyan text-glow-cyan mb-8">
+            A DEFCON 34 Contest
+        </h2>
+        <p class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base leading-relaxed">
+            /* Elevating hacker fashion beyond black hoodies and obscure band t-shirts. 
+            We celebrate the DIY ethos, wearable tech, cyberpunk aesthetics, and the 
+            creative expression found at the intersection of fashion and infosec. We're 
+            looking for your creative takes on clothing, shoes, jewelry, hats, and accessories. 
+            If it can be worn, it's ready to strut! For your convenience, you can bring 
+            designs you've crafted before the con. Just remember, your unique creations 
+            are what we're celebrating – no store-bought entries, please! */
+        </p>
+    </header>
+    <!-- Main Content: Video & CTA -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 z-10 relative">
+        
+        <!-- Embedded Video Container -->
+        <div class="mb-16 border border-neon-cyan/50 p-2 bg-dark-100/80 backdrop-blur-sm box-glow">
+            <div class="flex items-center space-x-2 border-b border-neon-cyan/30 pb-2 mb-2 px-2">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="text-neon-cyan text-xs ml-2">what_is_hack3r_runway.mp4</span>
+            </div>
+            <!-- 16:9 Aspect ratio wrapper for responsive iframe -->
+            <div class="aspect-w-16 aspect-h-9 relative w-full" style="padding-bottom: 56.25%;">
+                <iframe 
+                    class="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/b6B3Ylo28as?si=kNy8hF5f16ONPLsH" 
+                    title="What is Hack3r Runway?" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+<!--add category section: digital wearable, smart wear, aesthetics, functional wear-->
+        <section id="categories" class="mb-12 max-w-4xl mx-auto">
+            <h3 class="text-2xl text-neon-cyan mb-8 border-b border-neon-cyan/30 inline-block pb-2">Categories</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 border border-neon-green/30 bg-dark-200/80 rounded-sm box-glow">
+                    <h4 class="text-neon-green font-bold text-lg mb-2">Digital Wearable</h4>
+                    <p class="text-gray-300 text-sm">Incorporate passive technology into your wearable designs. (i.e. LEDs, audio, etc.)</p>
+                </div>
+                <div class="p-6 border border-neon-cyan/30 bg-dark-100/80 rounded-sm box-glow">
+                    <h4 class="text-neon-cyan font-bold text-lg mb-2">Smart Wear</h4>
+                    <p class="text-gray-300 text-sm">Functional and interactive elements in your creations. (i.e. sensors, actuators, etc.)</p>
+                </div>
+                <div class="p-6 border border-neon-blue/30 bg-dark-200/80 rounded-sm box-glow">
+                    <h4 class="text-neon-blue font-bold text-lg mb-2">Aesthetics</h4>
+                    <p class="text-gray-300 text-sm">Focus on the visual appeal and design elements. (i.e. 3d printing, cyberthemed, ect.)</p>
+                </div>
+                <div class="p-6 border border-neon-purple/30 bg-dark-100/80 rounded-sm box-glow">
+                    <h4 class="text-neon-purple font-bold text-lg mb-2">Functional Wear</h4>
+                    <p class="text-gray-300 text-sm">Emphasis on practicality and real-world applications. (i.e. lock picking tools, emergency kit, etc.)</p>
+                </div>
+            </div>
+        </section>
+
+<!--add signup details-->
+        <section id="signup-details" class="mb-12 max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
+            <h3 class="text-2xl text-neon-cyan mb-8 border-b border-neon-cyan/30 inline-block pb-2">Sign Up</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                <div class="p-6 border border-neon-green/30 bg-dark-200/80 rounded-sm box-glow">
+                <h4 class="text-neon-green font-bold text-lg mb-2">Sign‑Up Window</h4>
+                <p class="text-gray-300 text-sm mb-4">Register your entry during the window below. Times shown in PDT.</p>
+                <ul class="text-sm text-gray-200 space-y-2">
+                    <li>
+                        <span class="text-neon-cyan font-mono">Starts:</span>
+                        <time datetime="2026-06-28T17:00:00-07:00" class="text-neon-green font-bold">June 28, 2026 — 5PM PST</time>
+                    </li>
+                    <li>
+                        <span class="text-neon-cyan font-mono">Ends:</span>
+                        <time datetime="2026-08-8T12:00:00-07:00" class="text-red-400 font-bold">August 8, 2026 — 12PM PST</time>
+                    </li>
+                    <li>
+                        <span class="text-neon-cyan font-mono">Eligibility:</span>
+                        <span class="text-gray-300">Handmade or custom wearable items only — no store‑bought(ONLY) entries.</span>
+                    </li>
+                </ul>
+            </div>
+            </div
+</section>
+            <div class="p-6 border border-neon-cyan/30 bg-dark-100/80 rounded-sm">
+                <h4 class="text-neon-cyan font-bold text-lg mb-2">How to Sign Up</h4>
+                <ol class="text-sm text-gray-300 list-decimal list-inside space-y-2">
+                    <li>Gather your photos and a short description of your wearable.</li>
+                    <li>Click "Enter_The_Contest" to open the registration form and submit details.</li>
+                    <li>Bring your physical entry to the showcase during DEF CON with badge. You can model or find someone to walk the runway for you.</li>
+                </ol> 
+                <p class="mt-4 text-xs text-gray-500">Questions? Look at the form for email or DM me on Bluesky: <a href="https://bsky.app/profile/hack3rrunway.bsky.social" target="_blank" rel="noopener noreferrer" class="text-neon-green hover:underline">@Hack3rRunway.bksy.social</a></p>
+            </div>
+        </section>
+        <!-- Call to Action -->
+        <div class="text-center mb-24">
+            <p class="mb-6 text-gray-300">Think you have what it takes to crash the runway?</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOHpPn0fzgkLs-pwzWBiVCd7iobWwyNyRaw9bDrea3t9dpTA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" 
+               class="inline-block px-8 py-4 border-2 border-neon-green text-neon-green font-bold text-lg uppercase tracking-widest hover:bg-neon-green hover:text-black transition-all duration-300 box-glow">
+                > Enter_The_Contest
+            </a>
+        </div>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-20">
+            <h3 class="text-2xl text-neon-cyan mb-8 border-b border-neon-cyan/30 inline-block pb-2">
+                // ARCHIVE_LOGS: Visuals
+            </h3>
+            
+            <!-- 3 Column Responsive Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                
+                <!-- Gallery Item 1 -->
+                <div class="group relative overflow-hidden border border-gray-800 bg-dark-200 cursor-pointer">
+                    <img src="https://placehold.co/600x600/111/39FF14?font=source-code-pro&text=OUTFIT_0x01" alt="Runway Fashion 1" 
+                         class="w-full h-auto transform group-hover:scale-110 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 ring-2 ring-transparent group-hover:ring-neon-green group-hover:shadow-[inset_0_0_20px_#39FF14] transition-all duration-300 pointer-events-none"></div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="group relative overflow-hidden border border-gray-800 bg-dark-200 cursor-pointer">
+                    <img src="https://placehold.co/600x600/111/00FFFF?font=source-code-pro&text=OUTFIT_0x02" alt="Runway Fashion 2" 
+                         class="w-full h-auto transform group-hover:scale-110 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 ring-2 ring-transparent group-hover:ring-neon-cyan group-hover:shadow-[inset_0_0_20px_#00FFFF] transition-all duration-300 pointer-events-none"></div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="group relative overflow-hidden border border-gray-800 bg-dark-200 cursor-pointer">
+                    <img src="https://placehold.co/600x600/111/39FF14?font=source-code-pro&text=OUTFIT_0x03" alt="Runway Fashion 3" 
+                         class="w-full h-auto transform group-hover:scale-110 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 ring-2 ring-transparent group-hover:ring-neon-green group-hover:shadow-[inset_0_0_20px_#39FF14] transition-all duration-300 pointer-events-none"></div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="group relative overflow-hidden border border-gray-800 bg-dark-200 cursor-pointer">
+                    <img src="https://placehold.co/600x600/111/00FFFF?font=source-code-pro&text=OUTFIT_0x04" alt="Runway Fashion 4" 
+                         class="w-full h-auto transform group-hover:scale-110 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 ring-2 ring-transparent group-hover:ring-neon-cyan group-hover:shadow-[inset_0_0_20px_#00FFFF] transition-all duration-300 pointer-events-none"></div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="group relative overflow-hidden border border-gray-800 bg-dark-200 cursor-pointer">
+                    <img src="https://placehold.co/600x600/111/39FF14?font=source-code-pro&text=OUTFIT_0x05" alt="Runway Fashion 5" 
+                         class="w-full h-auto transform group-hover:scale-110 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 ring-2 ring-transparent group-hover:ring-neon-green group-hover:shadow-[inset_0_0_20px_#39FF14] transition-all duration-300 pointer-events-none"></div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="group relative overflow-hidden border border-gray-800 bg-dark-200 cursor-pointer">
+                    <img src="https://placehold.co/600x600/111/00FFFF?font=source-code-pro&text=OUTFIT_0x06" alt="Runway Fashion 6" 
+                         class="w-full h-auto transform group-hover:scale-110 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 ring-2 ring-transparent group-hover:ring-neon-cyan group-hover:shadow-[inset_0_0_20px_#00FFFF] transition-all duration-300 pointer-events-none"></div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-neon-green/30 bg-dark-100/90 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0">
+                <span class="text-neon-green font-bold text-lg">>_THE_HACK3R_RUNWAY</span>
+                <p class="text-xs text-gray-500 mt-1">EOF. Secure connection terminated.</p>
+            </div>
+            
+            <div class="flex space-x-6 text-sm">
+                <a href="https://bsky.app/profile/hack3rrunway.bsky.social" class="text-gray-400 hover:text-neon-cyan transition-colors">Bluesky</a>
+                <a href="https://www.instagram.com/hack3rrunway" class="text-gray-400 hover:text-neon-cyan transition-colors">Instagram</a>
+                <a href="https://www.youtube.com/@Hack3rRunway" class="text-gray-400 hover:text-neon-cyan transition-colors">YouTube</a>
+                <a href="https://www.facebook.com/hack3rrunway" class="text-gray-400 hover:text-neon-cyan transition-colors">Facebook</a>
+                <a href="https://defcon.social/@hac3krrunway" class="text-gray-400 hover:text-neon-cyan transition-colors">Defcon Social</a>
+                <a href="https://hack3rrunway.square.site" class="text-gray-400 hover:text-neon-cyan transition-colors">Hack3r Runway Shop</a>
+                <a href="https://defcon.org" target="_blank" class="text-neon-green hover:underline">DEF CON Info</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
+</html>
