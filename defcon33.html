@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archive: Year X | The Hacker Runway</title>
+    <title>Archive: Year 7 | The Hacker Runway</title>
     
     <!-- Google Fonts: Fira Code -->
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -109,6 +109,17 @@
                         >_RUNWAY
                     </a>
                 </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-neon-green focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neon-green">
+                        <svg id="icon-open" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="icon-close" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
                 <div class="hidden md:block">
                     <ul class="flex items-baseline space-x-8">
                         <li><a href="index.html" class="text-gray-300 hover:text-neon-green transition-colors duration-200">Home</a></li>
@@ -132,6 +143,24 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile menu (small screens) -->
+    <div id="mobile-menu" class="md:hidden hidden bg-dark-200/90 border-b border-neon-green/30">
+        <div class="px-4 pt-3 pb-4 space-y-1">
+            <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Home</a>
+            <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">FAQ</a>
+            <div class="pt-2 border-t border-neon-green/10">
+                <p class="px-3 py-2 text-xs text-gray-400">Archives</p>
+                <a href="https://hack3rrunway.github.io/DC28contest/" class="block px-3 py-2 text-sm text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Defcon 27: Year 1</a>
+                <a href="https://hack3rrunway.github.io/DC28Virtual/" class="block px-3 py-2 text-sm text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Defcon 28: Year 2</a>
+                <a href="https://hack3rrunway.github.io/DC29Virtual/" class="block px-3 py-2 text-sm text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Defcon 29: Year 3</a>
+                <a href="https://hack3rrunway.github.io/defcon30.html" class="block px-3 py-2 text-sm text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Defcon 30: Year 4</a>
+                <a href="https://hack3rrunway.github.io/defcon31.html" class="block px-3 py-2 text-sm text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Defcon 31: Year 5</a>
+                <a href="https://hack3rrunway.github.io/defcon32.html" class="block px-3 py-2 text-sm text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Defcon 32: Year 6</a>
+                <a href="https://hack3rrunway.github.io/defcon33.html" class="block px-3 py-2 text-sm text-gray-300 hover:bg-neon-green/10 hover:text-neon-green">Defcon 33: Year 7</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Archive Header / Event Log -->
     <header class="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 text-center z-10">
@@ -317,6 +346,46 @@
             </div>
         </div>
     </footer>
+
+<!-- Mobile menu toggle script -->
+<script>
+    (function(){
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        if(!btn || !menu) return;
+
+        function setExpanded(val){
+            btn.setAttribute('aria-expanded', String(val));
+            if(val){
+                menu.classList.remove('hidden');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        }
+
+        btn.addEventListener('click', function(e){
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            setExpanded(!expanded);
+        });
+
+        document.addEventListener('keydown', function(e){
+            if(e.key === 'Escape') setExpanded(false);
+        });
+
+        document.addEventListener('click', function(e){
+            const target = e.target;
+            if(!menu.classList.contains('hidden') && !menu.contains(target) && !btn.contains(target)){
+                setExpanded(false);
+            }
+        });
+    })();
+</script>
 
 </body>
 </html>
